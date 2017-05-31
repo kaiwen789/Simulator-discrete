@@ -47,9 +47,9 @@ class Manager(object):
 		for name in self.__getElement:
 			self.__getElement[name].set_value(self.__initial[name])
 
-	def run_simulation(self,simtype,runs,simStep,outName,**kwargs):
+	def run_simulation(self,simtype,m,simStep,outName,**kwargs):
 		
-		outMode = kwargs[outMode] if "outMode" in kwargs else 1
+		outMode = kwargs["outMode"] if "outMode" in kwargs else 1
 
 		output_file = open(outName,'w')
 		freq_sum = dict()
