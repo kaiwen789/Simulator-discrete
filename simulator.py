@@ -47,7 +47,10 @@ class Manager(object):
 		for name in self.__getElement:
 			self.__getElement[name].set_value(self.__initial[name])
 
-	def run_simulation(self,simtype,runs,simStep,outName):
+	def run_simulation(self,simtype,runs,simStep,outName,**kwargs):
+		
+		outMode = kwargs[outMode] if "outMode" in kwargs else 1
+
 		output_file = open(outName,'w')
 		freq_sum = dict()
 		for key in self.__getElement:
@@ -56,7 +59,9 @@ class Manager(object):
 
 
 		for run in range(runs):
-			output_file.write('Run #'+str(run)+'\n')
+			if outMode!=3:
+				output_file.write('Run #'+str(run)+'\n')
+				
 			self.set_initial()
 			memo = dict()
 			for key in self.__getElement:
@@ -68,8 +73,9 @@ class Manager(object):
 					memo[key] += [self.__getElement[key].get_value()]
 					freq_sum[key][step] += self.__getElement[key].get_value()
 
-			for name in sorted(self.__getElement):
-				output_file.write(name+' '+' '.join([str(x) for x in memo[name]])+'\n')
+			if outMode!=3: 
+				for name in sorted(self.__getElement):
+					output_file.write(name+' '+' '.join([str(x) for x in memo[name]])+'\n')
 
 		output_file.write('\nFrequency Summary:\n')
 		for name in sorted(self.__getElement):
