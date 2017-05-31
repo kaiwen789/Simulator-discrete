@@ -34,6 +34,7 @@ class Manager(object):
 			A = '' if A==None else A.strip()
 			I = '' if I==None else I.strip()
 
+			print(X)
 			ele = gateNode(X,A,I,val,max_state)
 			self.__initial[X] = val
 			self.__getElement[X] = ele
