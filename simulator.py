@@ -147,8 +147,8 @@ class gateNode(object):
 
 	def create_name_list(self,X,A,I):
 		names = set([X])
-		act_set = set(re.findall(r'[\w_@\*\#/]+',A))
-		inh_set = set(re.findall(r'[\w_@\*\#/]+',I))
+		act_set = set(re.findall(r'[\w_@\*\#/;]+',A))
+		inh_set = set(re.findall(r'[\w_@\*\#/;]+',I))
 		return sorted(list(act_set-names)) + sorted(list(inh_set-act_set-names)) + list(names)
 
 	def update(self,getElement):
